@@ -16,7 +16,7 @@ class Index(generic.TemplateView):
         context['num_authors'] =models.Author.objects.count()
         return context
 
-class BooKListView(generic.ListView):
+class BookListView(generic.ListView):
     model=models.Book
     template_name='catalog/book_list.html'
 
@@ -24,6 +24,9 @@ class BookDetailView(generic.DetailView):
     model = models.Book
     template_name='catalog/book_detail.html'
 
+class AuthorListView(generic.ListView):
+    model = models.Author
+    template_name = 'catalog/author_list.html'
 
 # def index(request):
 #     """
