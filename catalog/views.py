@@ -48,12 +48,11 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
         return models.BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
 
 
-@permission_required('catalog.can_mark_returned')
 def renew_book_librarian(request, pk):
     """
     View function for renewing a specific BookInstance by librarian
     """
-    book_inst=get_object_or_404(BookInstance, pk = pk)
+    book_inst=get_object_or_404(models.BookInstance, pk = pk)
 
     # If this is a POST request then process the Form data
     if request.method == 'POST':
