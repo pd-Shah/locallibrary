@@ -26,6 +26,13 @@
           <li><a href="{% url 'catalog:books' %}">All books</a></li>
           <li><a href="{% url 'catalog:authors'%}">All authors</a></li>
           <li><a href="/admin/"> Admin Page </a></li>
+          <li><a href="{% url 'catalog:my-borrowed' %}">My Borrowed</a></li>
+          {% if user.is_authenticated %}
+              <li>User: {{ user.get_username }}</li>
+              <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+          {% else %}
+              <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+          {% endif %}
       </ul>
      {% endblock %}
       </div>
